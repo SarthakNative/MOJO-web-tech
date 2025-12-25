@@ -8,7 +8,6 @@ import dotenv from "dotenv";
 dotenv.config();
 const {
   INSTAGRAM_APP_ID,
-  INSTAGRAM_APP_SECRET,
   INSTAGRAM_REDIRECT_URI,
   PORT,
   FRONTEND_URL
