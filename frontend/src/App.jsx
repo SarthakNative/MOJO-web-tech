@@ -29,7 +29,8 @@ function App() {
     window.location.href = `${import.meta.env.VITE_BACKEND_URL}/auth/instagram`;
   };
 
-  const handleLogout = () => {
+  const handleLogout = async() => {
+    await api.post('/auth/logout');
     setProfile(null);
     setFeed([]);
     setSelectedPost(null);
@@ -130,7 +131,7 @@ function App() {
                 className="group relative w-full max-w-xs overflow-hidden rounded-2xl bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 p-[2px] transition-all duration-300 hover:shadow-xl hover:shadow-pink-500/25"
               >
                 <div className="relative rounded-2xl bg-white px-8 py-4 transition-all duration-300 group-hover:bg-transparent">
-                  <span className="relative z-10 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent font-semibold text-lg group-hover:text-white">
+                  <span className="relative z-10 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent font-semibold text-lg group-hover:text-white cursor-pointer">
                     Login with Instagram
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -192,9 +193,9 @@ function App() {
               
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-50 to-red-100 text-red-600 hover:from-red-100 hover:to-red-200 transition-all duration-300 group"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-red-50 to-red-100 text-red-600 hover:from-red-100 hover:to-red-200 transition-all duration-300 group cursor-pointer"
               >
-                <LogOut className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+                <LogOut className="w-4 h-4 group-hover:rotate-12 transition-transform"/>
                 <span className="font-medium">Logout</span>
               </button>
             </div>
@@ -275,7 +276,7 @@ function App() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 cursor-pointer ${
                 activeTab === tab
                   ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25"
                   : "bg-white text-gray-600 hover:bg-gray-50"
@@ -334,7 +335,7 @@ function App() {
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
                     <button
                       onClick={() => openComments(item)}
-                      className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-300"
+                      className="flex items-center gap-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-xl hover:bg-white transition-all duration-300 cursor-pointer"
                     >
                       <MessageCircle className="w-5 h-5 text-gray-800" />
                       <span className="font-medium text-gray-800">Comments</span>
@@ -353,11 +354,11 @@ function App() {
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1">
                         <Heart className="w-4 h-4" />
-                        <span>{item.like_count || 0}</span>
+                        {/* <span>{item.like_count || 0}</span> */}
                       </div>
                       <div className="flex items-center gap-1">
                         <MessageCircle className="w-4 h-4" />
-                        <span>{item.comments_count || 0}</span>
+                        {/* <span>{item.comments_count || 0}</span> */}
                       </div>
                     </div>
                     <span className="text-xs">
@@ -399,7 +400,7 @@ function App() {
                   }}
                   className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
                 >
-                  <X className="w-6 h-6 text-gray-500" />
+                  <X className="w-6 h-6 text-gray-500 cursor-pointer" />
                 </button>
               </div>
             </div>
